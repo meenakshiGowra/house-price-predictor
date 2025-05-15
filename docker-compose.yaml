@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  fastapi:
+    image: meenudevops0812/fastapi:dev  # replace with actual Docker Hub user ID
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+
+  streamlit:
+    image: meenudevops0812/streamlit:dev  # replace with actual Docker Hub user ID
+    build:
+      context: ./streamlit_app
+      dockerfile: Dockerfile
+    ports:
+      - 8501:8501
+    environment:
+      API_URL: http://fastapi:8000
